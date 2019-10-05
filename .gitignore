@@ -1,0 +1,7 @@
+shop/.idea/**
+shop/.DS_Store/**
+shop/*.iml/**
+shop/target/**
+.DS_Store
+shop/book.iml
+shop/server3.iml
