@@ -1,6 +1,8 @@
-<%@ page import="java.util.List" %><%
+<%@ page import="java.util.List" %>
+<%@ page import="company.ryzhkov.entity.Category" %><%
     Object o = request.getAttribute("errors");
     List<String> errors = (List<String>) o;
+    List<Category> categories = (List<Category>) request.getAttribute("categories");
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>

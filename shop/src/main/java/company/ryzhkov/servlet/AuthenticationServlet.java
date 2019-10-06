@@ -1,6 +1,7 @@
 package company.ryzhkov.servlet;
 
 import company.ryzhkov.entity.User;
+import company.ryzhkov.repository.CategoryRepository;
 import company.ryzhkov.repository.UserRepository;
 import company.ryzhkov.util.PasswordEncoder;
 
@@ -25,8 +26,12 @@ public class AuthenticationServlet extends HttpServlet {
     @EJB
     private UserRepository userRepository;
 
+    @EJB
+    private CategoryRepository categoryRepository;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("categories", categoryRepository.getAll());
         List<String> errors = new ArrayList<>();
         String username = req.getParameter("username");
         String rawPassword = req.getParameter("password");
@@ -60,6 +65,7 @@ public class AuthenticationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("categories", categoryRepository.getAll());
         HttpSession session = req.getSession();
         String username = (String) session.getAttribute("username");
         req.setAttribute("username", username);

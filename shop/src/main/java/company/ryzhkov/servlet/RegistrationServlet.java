@@ -2,6 +2,7 @@ package company.ryzhkov.servlet;
 
 import company.ryzhkov.entity.User;
 import company.ryzhkov.repository.AccountRepository;
+import company.ryzhkov.repository.CategoryRepository;
 import company.ryzhkov.repository.UserRepository;
 
 import javax.ejb.EJB;
@@ -23,8 +24,12 @@ public class RegistrationServlet extends HttpServlet {
     @EJB
     private AccountRepository accountRepository;
 
+    @EJB
+    private CategoryRepository categoryRepository;
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("categories", categoryRepository.getAll());
         List<String> errors = new ArrayList<>();
         String username = req.getParameter("username");
         String email = req.getParameter("email");
@@ -67,6 +72,7 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("categories", categoryRepository.getAll());
         req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
     }
 }

@@ -25,7 +25,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <% for (Category category : categories) { %>
-                    <a class="dropdown-item" href="#"><%=category.getName()%></a>
+                    <% String categoryUrl = pageContext.getServletContext().getContextPath() + "/category?category_name=" + category.getName(); %>
+                    <a class="dropdown-item" href='<%=categoryUrl%>'><%=category.getName()%></a>
                     <% } %>
                 </div>
             </li>

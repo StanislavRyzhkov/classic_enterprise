@@ -1,7 +1,10 @@
-<%@ page import="java.util.List" %><%
+<%@ page import="java.util.List" %>
+<%@ page import="company.ryzhkov.entity.Category" %>
+<%
     Object o = request.getAttribute("products");
     Object username = (String) request.getAttribute("username");
     List<String> errors = (List<String>) request.getAttribute("errors");
+    List<Category> categories = (List<Category>) request.getAttribute("categories");
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>

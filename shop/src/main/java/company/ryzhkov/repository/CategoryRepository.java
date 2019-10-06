@@ -10,8 +10,7 @@ import java.util.stream.Collectors;
 public class CategoryRepository extends AbstractRepository {
 
     public List<Category> getAll() {
-        return em
-                .createQuery("select c from Category c", Category.class)
+        return em.createQuery("select c from Category c", Category.class)
                 .getResultList()
                 .stream()
                 .sorted().collect(Collectors.toList());

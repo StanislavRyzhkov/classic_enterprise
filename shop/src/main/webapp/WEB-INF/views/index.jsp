@@ -64,7 +64,8 @@
             <div class="container">
                 <div class="row">
                     <% for (Product product : products) { %>
-                    <a href="authenticate" class="p-3 green col-md-4" style="display: block; text-decoration: none;">
+                    <% String productUrl = pageContext.getServletContext().getContextPath() + "/product?vendor_code=" + product.getVendorCode(); %>
+                    <a href='<%=productUrl%>' class="p-3 green col-md-4" style="display: block; text-decoration: none;">
                     <div class="card border-secondary mb-3">
                         <div class="card-header"><%=product.getCategory().getName()%></div>
                         <div class="card-body text-secondary">
