@@ -1,11 +1,11 @@
 package company.ryzhkov.servlet;
 
 import company.ryzhkov.entity.User;
-import company.ryzhkov.repository.AccountRepository;
-import company.ryzhkov.repository.CategoryRepository;
-import company.ryzhkov.repository.UserRepository;
+import company.ryzhkov.repository.AccountRepositoryBean;
+import company.ryzhkov.repository.CategoryRepositoryBean;
+import company.ryzhkov.repository.UserRepositoryBean;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,14 +18,14 @@ import java.util.List;
 @WebServlet(urlPatterns = "/register")
 public class RegistrationServlet extends HttpServlet {
 
-    @EJB
-    private UserRepository userRepository;
+    @Inject
+    private UserRepositoryBean userRepository;
 
-    @EJB
-    private AccountRepository accountRepository;
+    @Inject
+    private AccountRepositoryBean accountRepository;
 
-    @EJB
-    private CategoryRepository categoryRepository;
+    @Inject
+    private CategoryRepositoryBean categoryRepository;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

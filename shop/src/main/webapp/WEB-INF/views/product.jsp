@@ -9,7 +9,7 @@
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
-<html lang="en">
+<html lang="ru-ru">
 <jsp:include page="head.jsp">
     <jsp:param name="title" value="<%=product.getVendorCode()%>"/>
 </jsp:include>
@@ -37,7 +37,6 @@
                                         <option><%=i+1%></option>
                                         <% }  %>
                                     </select>
-<%--                                    <input type="text">--%>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Добавить в корзину</button>
                             </form>

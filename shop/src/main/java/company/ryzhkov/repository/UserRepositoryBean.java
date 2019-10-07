@@ -11,13 +11,13 @@ import java.util.Collections;
 import java.util.List;
 
 @Stateless
-public class UserRepository extends AbstractRepository {
+public class UserRepositoryBean extends AbstractRepositoryBean {
 
     @Inject
     private PasswordEncoder passwordEncoder;
 
     @EJB
-    private RoleRepository roleRepository;
+    private RoleRepositoryBean roleRepository;
 
     public User findByUsername(String username) {
         List<User> users = em.createQuery("SELECT u from User u WHERE u.username = :username", User.class)

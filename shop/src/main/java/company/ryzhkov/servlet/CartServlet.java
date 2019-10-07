@@ -1,6 +1,7 @@
 package company.ryzhkov.servlet;
 
-import company.ryzhkov.api.ProductRepository;
+import company.ryzhkov.api.CartService;
+import company.ryzhkov.entity.Product;
 import company.ryzhkov.repository.CategoryRepositoryBean;
 
 import javax.inject.Inject;
@@ -9,25 +10,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Set;
 
-@WebServlet(urlPatterns = "/index")
-public class IndexServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/cart")
+public class CartServlet extends HttpServlet {
 
     @Inject
-    private ProductRepository productRepository;
+    private CartService cartService;
 
     @Inject
     private CategoryRepositoryBean categoryRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        String username = (String) session.getAttribute("username");
+        Set<Map.Entry<Product, Integer>> cartItems = cartService.getCart().entrySet();
+        String username = (String) req.getSession().getAttribute("username");
         req.setAttribute("username", username);
-        req.setAttribute("products", productRepository.getAll());
         req.setAttribute("categories", categoryRepository.getAll());
-        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+        req.setAttribute("cartItems", cartItems);
+        req.setAttribute("totalPrice", cartService.totalPrice());
+        req.setAttribute("isEmpty", cartItems.isEmpty());
+        req.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(req, resp);
     }
 }

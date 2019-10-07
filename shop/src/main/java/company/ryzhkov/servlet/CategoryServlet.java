@@ -1,11 +1,11 @@
 package company.ryzhkov.servlet;
 
+import company.ryzhkov.api.ProductRepository;
 import company.ryzhkov.entity.Category;
 import company.ryzhkov.entity.Product;
-import company.ryzhkov.repository.CategoryRepository;
-import company.ryzhkov.repository.ProductRepository;
+import company.ryzhkov.repository.CategoryRepositoryBean;
 
-import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,11 +17,11 @@ import java.util.List;
 @WebServlet(urlPatterns = "/category")
 public class CategoryServlet extends HttpServlet {
 
-    @EJB
+    @Inject
     private ProductRepository productRepository;
 
-    @EJB
-    private CategoryRepository categoryRepository;
+    @Inject
+    private CategoryRepositoryBean categoryRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

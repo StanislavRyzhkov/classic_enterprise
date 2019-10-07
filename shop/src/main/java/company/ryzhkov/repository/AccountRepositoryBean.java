@@ -6,7 +6,7 @@ import company.ryzhkov.entity.User;
 import javax.ejb.Stateless;
 
 @Stateless
-public class AccountRepository extends AbstractRepository {
+public class AccountRepositoryBean extends AbstractRepositoryBean {
 
     public void createAccount(User user) {
         Account account = new Account();

@@ -1,14 +1,10 @@
 package company.ryzhkov.servlet;
 
-import company.ryzhkov.cart.CartService;
-import company.ryzhkov.entity.OrderItem;
+import company.ryzhkov.api.CartService;
+import company.ryzhkov.api.ProductRepository;
 import company.ryzhkov.entity.Product;
-import company.ryzhkov.repository.CategoryRepository;
-import company.ryzhkov.repository.ProductRepository;
+import company.ryzhkov.repository.CategoryRepositoryBean;
 
-import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +17,11 @@ import java.util.Map;
 @WebServlet(urlPatterns = "/product")
 public class ProductServlet extends HttpServlet {
 
-    @EJB
+    @Inject
     private ProductRepository productRepository;
 
-    @EJB
-    private CategoryRepository categoryRepository;
+    @Inject
+    private CategoryRepositoryBean categoryRepository;
 
     @Inject
     private CartService cartService;
@@ -43,7 +39,7 @@ public class ProductServlet extends HttpServlet {
             return;
         }
         String username = (String) req.getSession().getAttribute("username");
-        Map<Product, Integer> map = cartService.getMap();
+        Map<Product, Integer> map = cartService.getCart();
         long count = map.size();
         req.setAttribute("count", count);
         req.setAttribute("categories", categoryRepository.getAll());
@@ -57,8 +53,6 @@ public class ProductServlet extends HttpServlet {
         int numberVal;
         String vendorCode = req.getParameter("vendor_code");
         String number = req.getParameter("number");
-        System.out.println(vendorCode);
-        System.out.println(number);
         try {
             numberVal = Integer.parseInt(number);
         } catch (NumberFormatException e) {

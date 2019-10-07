@@ -48,6 +48,9 @@
                 <a class="nav-link" href="authenticate">Вход</a>
             </li>
             <% } %>
+            <li class="nav-item">
+                <a class="nav-link" href="cart">Корзина</a>
+            </li>
         </ul>
     </div>
 </nav>
