@@ -70,6 +70,7 @@ create table if not exists products(
         constraint products_pkey
             primary key,
     name varchar(255),
+    stock int not null,
     vendor_code varchar(255) not null,
     price int not null,
     picture varchar(255),
@@ -79,7 +80,3 @@ create table if not exists products(
             references categories
 );
 alter table products owner to clyde;
-
-
-
-

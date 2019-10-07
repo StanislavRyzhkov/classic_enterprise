@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -27,6 +28,9 @@ public class Product {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "stock")
+    private Integer stock;
+
     @Column(name = "vendor_code", nullable = false)
     private String vendorCode;
 
@@ -38,4 +42,18 @@ public class Product {
 
     @Column(name = "picture")
     private String picture;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Product) {
+            Product product = (Product) obj;
+            return product.getVendorCode().equals(((Product) obj).getVendorCode());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.vendorCode);
+    }
 }

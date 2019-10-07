@@ -16,6 +16,7 @@
     <body>
         <div class="wrap">
             <%@include file="nav.jsp"%>
+<%--            <h1 class="m-auto text-center"><%=categoryName%></h1>--%>
             <section class="py-5">
                 <div class="container">
                     <div class="row">
