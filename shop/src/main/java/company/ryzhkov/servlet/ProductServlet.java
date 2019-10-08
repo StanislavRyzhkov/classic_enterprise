@@ -1,9 +1,9 @@
 package company.ryzhkov.servlet;
 
 import company.ryzhkov.api.CartService;
+import company.ryzhkov.api.CategoryRepository;
 import company.ryzhkov.api.ProductRepository;
 import company.ryzhkov.entity.Product;
-import company.ryzhkov.repository.CategoryRepositoryBean;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Map;
 
 @WebServlet(urlPatterns = "/product")
 public class ProductServlet extends HttpServlet {
@@ -21,7 +20,7 @@ public class ProductServlet extends HttpServlet {
     private ProductRepository productRepository;
 
     @Inject
-    private CategoryRepositoryBean categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Inject
     private CartService cartService;
@@ -39,12 +38,10 @@ public class ProductServlet extends HttpServlet {
             return;
         }
         String username = (String) req.getSession().getAttribute("username");
-        Map<Product, Integer> map = cartService.getCart();
-        long count = map.size();
-        req.setAttribute("count", count);
         req.setAttribute("categories", categoryRepository.getAll());
         req.setAttribute("username", username);
         req.setAttribute("product", product);
+        req.setAttribute("totalPrice", cartService.totalPrice());
         req.getRequestDispatcher("/WEB-INF/views/product.jsp").forward(req, resp);
     }
 

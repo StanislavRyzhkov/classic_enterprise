@@ -1,8 +1,8 @@
 package company.ryzhkov.servlet;
 
 import company.ryzhkov.api.CartService;
+import company.ryzhkov.api.CategoryRepository;
 import company.ryzhkov.entity.Product;
-import company.ryzhkov.repository.CategoryRepositoryBean;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,7 +21,7 @@ public class CartServlet extends HttpServlet {
     private CartService cartService;
 
     @Inject
-    private CategoryRepositoryBean categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

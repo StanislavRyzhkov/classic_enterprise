@@ -7,6 +7,7 @@
     Object username = (String) request.getAttribute("username");
     Collection<Product> products = (Collection<Product>) o;
     List<Category> categories = (List<Category>) request.getAttribute("categories");
+    int totalPrice = (int) request.getAttribute("totalPrice");
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>

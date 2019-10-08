@@ -23,8 +23,9 @@
                 <div class="container">
                     <div class="row">
                         <% if (isEmpty) { %>
-                        <h1>Корзина пуста</h1>
+                        <h1 class="text-center">Корзина пуста</h1>
                         <% } else { %>
+                        <h1 class="text-center">Корзина</h1>
                         <table class="table">
                             <thead>
                             <tr>

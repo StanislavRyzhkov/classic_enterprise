@@ -5,6 +5,7 @@
     Object username = (String) request.getAttribute("username");
     List<String> errors = (List<String>) request.getAttribute("errors");
     List<Category> categories = (List<Category>) request.getAttribute("categories");
+    int totalPrice = (int) request.getAttribute("totalPrice");
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>

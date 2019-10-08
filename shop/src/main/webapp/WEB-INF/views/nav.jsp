@@ -33,6 +33,9 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="cart">Корзина <%=totalPrice%> рублей</a>
+            </li>
             <% if (username != null) { %>
             <li class="nav-item">
                 <a class="nav-link" href="#"><%=username%></a>
@@ -48,9 +51,6 @@
                 <a class="nav-link" href="authenticate">Вход</a>
             </li>
             <% } %>
-            <li class="nav-item">
-                <a class="nav-link" href="cart">Корзина</a>
-            </li>
         </ul>
     </div>
 </nav>

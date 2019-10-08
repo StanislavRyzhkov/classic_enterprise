@@ -1,8 +1,8 @@
 package company.ryzhkov.servlet;
 
+import company.ryzhkov.api.AccountRepository;
+import company.ryzhkov.api.CategoryRepository;
 import company.ryzhkov.entity.User;
-import company.ryzhkov.repository.AccountRepositoryBean;
-import company.ryzhkov.repository.CategoryRepositoryBean;
 import company.ryzhkov.repository.UserRepositoryBean;
 
 import javax.inject.Inject;
@@ -22,10 +22,10 @@ public class RegistrationServlet extends HttpServlet {
     private UserRepositoryBean userRepository;
 
     @Inject
-    private AccountRepositoryBean accountRepository;
+    private AccountRepository accountRepository;
 
     @Inject
-    private CategoryRepositoryBean categoryRepository;
+    private CategoryRepository categoryRepository;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

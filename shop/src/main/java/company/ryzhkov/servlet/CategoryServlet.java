@@ -1,9 +1,10 @@
 package company.ryzhkov.servlet;
 
+import company.ryzhkov.api.CartService;
+import company.ryzhkov.api.CategoryRepository;
 import company.ryzhkov.api.ProductRepository;
 import company.ryzhkov.entity.Category;
 import company.ryzhkov.entity.Product;
-import company.ryzhkov.repository.CategoryRepositoryBean;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -21,7 +22,10 @@ public class CategoryServlet extends HttpServlet {
     private ProductRepository productRepository;
 
     @Inject
-    private CategoryRepositoryBean categoryRepository;
+    private CategoryRepository categoryRepository;
+
+    @Inject
+    private CartService cartService;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -41,6 +45,7 @@ public class CategoryServlet extends HttpServlet {
         req.setAttribute("categories", categories);
         req.setAttribute("username", username);
         req.setAttribute("categoryName", categoryName);
+        req.setAttribute("totalPrice", cartService.totalPrice());
         req.getRequestDispatcher("/WEB-INF/views/category.jsp").forward(req, resp);
     }
 }

@@ -5,7 +5,7 @@
     List<Category> categories = (List<Category>) request.getAttribute("categories");
     String username = (String) request.getAttribute("username");
     Product product = (Product) request.getAttribute("product");
-    Long count = (Long) request.getAttribute("count");
+    int totalPrice = (int) request.getAttribute("totalPrice");
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
@@ -25,7 +25,6 @@
                         </div>
                         <div class="col-6 p-3">
                             <h1><%=product.getCategory().getName()%></h1>
-                            <h2><%=count%></h2>
                             <h3>Цена: <%=product.getPrice()%> рублей</h3>
                             <p>Артикул <%=product.getVendorCode()%></p>
                             <form action="product" method="post" id="addToCartForm">
